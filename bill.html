@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <title> HERITAGE BILL</title>
+  <style>
+    body { font-family: monospace; background: #f9f9f9; padding: 20px; }
+    .container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    h2 { text-align: center; }
+    table { width: 100%; margin-bottom: 15px; border-collapse: collapse; }
+    th, td { padding: 6px; text-align: center; border: 1px solid #ddd; }
+    button { margin: 5px; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; }
+    .btn { background: #007bff; color: white; }
+    .btn:hover { background: #0056b3; }
+    .reset { background: #dc3545; color: white; }
+    .reset:hover { background: #a71d2a; }
+    .copy { background: #28a745; color: white; }
+    .copy:hover { background: #1e7e34; }
+    pre { background: #f1f1f1; padding: 10px; border-radius: 5px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🧾HERITAGE BIL</h2>
+    <table>
+      <tr><th>వస్తువు</th><th>ధర (₹)</th><th>మొత్తం</th></tr>
+      <tr><td>పాలు 500ml</td><td>35</td><td><input type="number" min="0" id="milk500"></td></tr>
+      <tr><td>పాలు 120ml</td><td>9</td><td><input type="number" min="0" id="milk120"></td></tr>
+      <tr><td>పెరుగు 500ml (₹35)</td><td>35</td><td><input type="number" min="0" id="curd500a"></td></tr>
+      <tr><td>పెరుగు 500ml (₹36)</td><td>36</td><td><input type="number" min="0" id="curd500b"></td></tr>
+      <tr><td>పెరుగు 120ml</td><td>9</td><td><input type="number" min="0" id="curd120"></td></tr>
+      <tr><td>మజ్జిగ ప్యాకెట్</td><td>7</td><td><input type="number" min="0" id="butterPkt"></td></tr>
+      <tr><td>లస్సీ ప్యాకెట్</td><td>9</td><td><input type="number" min="0" id="lassiPkt"></td></tr>
+      <tr><td>మజ్జిగ సంచి</td><td>195</td><td><input type="number" min="0" id="butterBag"></td></tr>
+      <tr><td>లస్సీ సంచి</td><td>265</td><td><input type="number" min="0" id="lassiBag"></td></tr>
+    </table>
+
+    <button class="btn" onclick="generateBill()">➡ బిల్లు తయారు చెయ్యి</button>
+    <button class="reset" onclick="resetBill()">🔄 రీసెట్</button>
+    <button class="copy" onclick="copyBill()">📋 బిల్లు కాపీ చెయ్యి</button>
+
+    <h3>📝 బిల్లు వివరాలు:</h3>
+    <pre id="billText"></pre>
+  </div>
+
+  <script>
+    function getValue(id) {
+      let val = document.getElementById(id).value;
+      return val === "" ? 0 : parseInt(val);
+    }
+
+    function generateBill() {
+      const items = [
+        {name: "పాలు 500ml", price: 35, qty: getValue("milk500")},
+        {name: "పాలు 120ml", price: 9, qty: getValue("milk120")},
+        {name: "పెరుగు 500ml (₹35)", price: 35, qty: getValue("curd500a")},
+        {name: "పెరుగు 500ml (₹36)", price: 36, qty: getValue("curd500b")},
+        {name: "పెరుగు 120ml", price: 9, qty: getValue("curd120")},
+        {name: "మజ్జిగ ప్యాకెట్", price: 7, qty: getValue("butterPkt")},
+        {name: "లస్సీ ప్యాకెట్", price: 9, qty: getValue("lassiPkt")},
+        {name: "మజ్జిగ సంచి", price: 195, qty: getValue("butterBag")},
+        {name: "లస్సీ సంచి", price: 265, qty: getValue("lassiBag")}
+      ];
+
+      let output = "------- 🧾 పాలు & పెరుగు బిల్లు -------\n";
+      let total = 0;
+
+      items.forEach(item => {
+        if(item.qty > 0){
+          let lineTotal = item.qty * item.price;
+          output += ${item.name} x ${item.qty} = ₹${lineTotal}\n;
+          total += lineTotal;
+        }
+      });
+
+      output += "--------------------------------\n";
+      output += ✅ మొత్తం (Grand Total): ₹${total}\n;
+      document.getElementById("billText").textContent = output;
+    }
+
+    function resetBill() {
+      document.querySelectorAll("input").forEach(i => i.value = "");
+      document.getElementById("billText").textContent = "";
+    }
+
+    function copyBill() {
+      const billText = document.getElementById("billText").textContent;
+      if (billText.trim() === "") {
+        alert("❌ బిల్లు లేదు కాపీ చెయ్యడానికి!");
+        return;
+      }
+
+      // Fallback method with textarea
+      const textarea = document.createElement("textarea");
+      textarea.value = billText;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+
+      alert("✅ బిల్లు కాపీ అయ్యింది!");
+    }
+  </script>
+</body>
+</html>
