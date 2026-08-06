@@ -24,15 +24,14 @@
     <h2>HERITAGE BILL</h2>
     <table>
       <tr><th>వస్తువు</th><th>ధర (₹)</th><th>ఎన్ని</th></tr>
-      <tr><td>పాలు 500ml</td><td>35</td><td><input type="number" min="0" id="milk500"></td></tr>
+      <tr><td>పాలు 500ml</td><td>37</td><td><input type="number" min="0" id="milk500"></td></tr>
       <tr><td>పాలు 120ml</td><td>9</td><td><input type="number" min="0" id="milk120"></td></tr>
-      <tr><td>పెరుగు 500ml (35)</td><td>35</td><td><input type="number" min="0" id="curd500a"></td></tr>
-      <tr><td>పెరుగు 500ml (36)</td><td>36</td><td><input type="number" min="0" id="curd500b"></td></tr>
+      <tr><td>పెరుగు 500ml (38)</td><td>38</td><td><input type="number" min="0" id="curd500b"></td></tr>
       <tr><td>పెరుగు 120ml</td><td>9</td><td><input type="number" min="0" id="curd120"></td></tr>
-      <tr><td>మజ్జిగ ప్యాకెట్</td><td>7</td><td><input type="number" min="0" id="butterPkt"></td></tr>
+      <tr><td>మజ్జిగ ప్యాకెట్</td><td>8</td><td><input type="number" min="0" id="butterPkt"></td></tr>
       <tr><td>లస్సీ ప్యాకెట్</td><td>9</td><td><input type="number" min="0" id="lassiPkt"></td></tr>
-      <tr><td>మజ్జిగ బ్యాగ్</td><td>195</td><td><input type="number" min="0" id="butterBag"></td></tr>
-      <tr><td>లస్సీ బ్యాగ్</td><td>265</td><td><input type="number" min="0" id="lassiBag"></td></tr>
+      <tr><td>మజ్జిగ బ్యాగ్</td><td>225</td><td><input type="number" min="0" id="butterBag"></td></tr>
+      <tr><td>లస్సీ బ్యాగ్</td><td>270</td><td><input type="number" min="0" id="lassiBag"></td></tr>
     </table>
 
     <button type="button" class="btn" onclick="generateBill()">🧾 బిల్ తయారు చేయి</button>
@@ -51,15 +50,14 @@
 
     function generateBill() {
       const items = [
-        {name: "పాలు 500ml", price: 35, qty: getValue("milk500")},
+        {name: "పాలు 500ml", price: 37w, qty: getValue("milk500")},
         {name: "పాలు 120ml", price: 9, qty: getValue("milk120")},
-        {name: "పెరుగు 500ml (35)", price: 35, qty: getValue("curd500a")},
-        {name: "పెరుగు 500ml (36)", price: 36, qty: getValue("curd500b")},
+        {name: "పెరుగు 500ml (36)", price: 38, qty: getValue("curd500b")},
         {name: "పెరుగు 120ml", price: 9, qty: getValue("curd120")},
-        {name: "మజ్జిగ ప్యాకెట్", price: 7, qty: getValue("butterPkt")},
+        {name: "మజ్జిగ ప్యాకెట్", price: 8, qty: getValue("butterPkt")},
         {name: "లస్సీ ప్యాకెట్", price: 9, qty: getValue("lassiPkt")},
-        {name: "మజ్జిగ బ్యాగ్", price: 195, qty: getValue("butterBag")},
-        {name: "లస్సీ బ్యాగ్", price: 265, qty: getValue("lassiBag")}
+        {name: "మజ్జిగ బ్యాగ్", price: 225, qty: getValue("butterBag")},
+        {name: "లస్సీ బ్యాగ్", price: 270, qty: getValue("lassiBag")}
       ];
 
       let output = "------- 🧾 బిల్ -------\n";
